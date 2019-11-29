@@ -63,6 +63,38 @@ class Blog extends Component {
         })
     }
 
+    deletePost = (id)=>{
+        console.log('Delete post', id);
+        this.setState(
+            (oldState)=>{
+                const newPosts = oldState.posts.filter(
+                    (post)=>post.id !== id
+                );                
+                return {
+                    posts: newPosts,
+                    selectedPost: {}
+                }
+            }
+        )   
+    }
+
+    addPost = (post)=>{
+        const newPost = {
+            userId: Math.random(),
+            id: Math.random(),
+            title: post.title,
+            body: post.content,
+            author: post.author
+        };
+        this.setState(
+            (oldState)=>{
+                return{
+                    posts: [...oldState.posts, newPost]
+                }
+            }
+        );
+    }
+
     render () {
         const posts = this.state.posts.map(
             (post)=>{
@@ -88,10 +120,13 @@ class Blog extends Component {
                         title={this.state.selectedPost.title}
                         content={this.state.selectedPost.body}
                         id={this.state.selectedPost.id}
+                        deleteClicked = {this.deletePost}
                     />
                 </section>
                 <section>
-                    <NewPost />
+                    <NewPost 
+                        addPostClicked={this.addPost}
+                    />
                 </section>
             </div>
         );
