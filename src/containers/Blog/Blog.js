@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
+import NewPost from './NewPost/NewPost';
 import './Blog.css';
 
 import axios from 'axios';
@@ -20,12 +20,12 @@ class Blog extends Component {
     }
 
     componentWillMount(){
-        console.log('Will get data...');
+        //console.log('Will get data...');
         this.getData();
     }    
 
     getData = ()=>{
-        axios.get('https://jsonplaceholder.typicode.com/posts')            
+        return axios.get('https://jsonplaceholder.typicode.com/posts')            
             .then(
                 (res)=>
                 {
@@ -40,7 +40,8 @@ class Blog extends Component {
                     );
 
                     this.setState({
-                        posts: updatedPosts
+                        posts: updatedPosts,
+                        selectedPost: updatedPosts[0]
                     });                    
                 }
             )
@@ -48,7 +49,7 @@ class Blog extends Component {
                 (err)=>
                     {
                         alert('Something bad happened...', err);
-                        console.log(err);
+                        //console.log(err);
                     }
             );
     }
@@ -57,14 +58,14 @@ class Blog extends Component {
         const filteredPost = this.state.posts.filter(
             (post)=>post.id === id
         );
-        console.log(...filteredPost);        
+        //console.log(...filteredPost);        
         this.setState({
             selectedPost : filteredPost[0]
         })
     }
 
     deletePost = (id)=>{
-        console.log('Delete post', id);
+        //console.log('Delete post', id);
         this.setState(
             (oldState)=>{
                 const newPosts = oldState.posts.filter(
@@ -111,7 +112,16 @@ class Blog extends Component {
         );        
 
         return (
-            <div>
+            <div className="Blog">
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a>Home</a></li>
+                            <li><a>New Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
+            
                 <section className="Posts">
                     {posts}
                 </section>

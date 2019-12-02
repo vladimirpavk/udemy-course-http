@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 
 import './FullPost.css';
 
-class FullPost extends Component {
-
-    constructor(props){
-        super(props);        
-    }
-
+class FullPost extends Component {    
     render () {
         let post = <p>Please select a Post!</p>;
         post = (
