@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
-import Post from '../../components/Post/Post';
-import FullPost from './FullPost/FullPost';
-import NewPost from './NewPost/NewPost';
+import { Route, Link } from 'react-router-dom';
 import './Blog.css';
 
 import axios from 'axios';
+
+import Posts from './Posts/Posts';
+import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
     
@@ -97,7 +98,7 @@ class Blog extends Component {
     }
 
     render () {
-        const posts = this.state.posts.map(
+        /* const posts = this.state.posts.map(
             (post)=>{
                 return (
                     <Post
@@ -109,22 +110,23 @@ class Blog extends Component {
                         />
                 );
             }
-        );        
+        );         */
 
         return (
             <div className="Blog">
                 <header>
                     <nav>
                         <ul>
-                            <li><a>Home</a></li>
-                            <li><a>New Post</a></li>
+                            <Link to='/'><li>Home</li></Link>                            
+                            <Link to='/new'><li>New Post</li></Link>
                         </ul>
                     </nav>
                 </header>
             
-                <section className="Posts">
+               {/*  <section className="Posts">
                     {posts}
                 </section>
+
                 <section>
                     <FullPost 
                         title={this.state.selectedPost.title}
@@ -137,7 +139,10 @@ class Blog extends Component {
                     <NewPost 
                         addPostClicked={this.addPost}
                     />
-                </section>
+                </section> */}
+                <Route path='/' exact component={Posts} />
+                <Route path='/new' component={NewPost} />
+                <Route path='/:id' component={FullPost}/>
             </div>
         );
     }

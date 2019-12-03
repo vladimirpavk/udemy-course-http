@@ -7,10 +7,11 @@
     margin: 10px;
     box-sizing: border-box;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.Post:hover,
-.Post:active {
+.Post h1:hover,
+.Post h1:active {
     background-color: #C0DDF5;
 }
 

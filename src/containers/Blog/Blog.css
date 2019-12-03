@@ -17,14 +17,11 @@
 .Blog li{
     display: inline-block;
     margin: 20px;
-}
-
-.Blog a{
     text-decoration: none;
     color: black
 }
 
-.Blog a:active,
-.Blog a:hover{
+.Blog li:active,
+.Blog li:hover{
     color: brown;
 }
