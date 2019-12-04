@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Post.css';
 
 const post = (props) => {
-    const linkTo = '/' + props.id;
+    const linkTo = '/post/' + props.id;
 
     return (    
         <article className="Post">        

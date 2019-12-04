@@ -141,8 +141,8 @@ class Blog extends Component {
                     />
                 </section> */}
                 <Route path='/' exact component={Posts} />
-                <Route path='/new' component={NewPost} />
-                <Route path='/:id' component={FullPost}/>
+                <Route path='/post/:id' component={FullPost} />
+                <Route path='/new' component={NewPost} />               
             </div>
         );
     }
