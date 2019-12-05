@@ -22,6 +22,7 @@
 }
 
 .Blog li:active,
+.Blog li.active,
 .Blog li:hover{
     color: brown;
 }

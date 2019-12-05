@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import './Blog.css';
 
 import axios from 'axios';
@@ -117,8 +117,8 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <Link to='/'><li>Home</li></Link>                            
-                            <Link to='/new'><li>New Post</li></Link>
+                            <NavLink to='/' exact><li>Home</li></NavLink>                            
+                            <NavLink to='/new'><li>New Post</li></NavLink>
                         </ul>
                     </nav>
                 </header>
@@ -140,8 +140,7 @@ class Blog extends Component {
                         addPostClicked={this.addPost}
                     />
                 </section> */}
-                <Route path='/' exact component={Posts} />
-                <Route path='/post/:id' component={FullPost} />
+                <Route path='/' component={Posts} />                
                 <Route path='/new' component={NewPost} />               
             </div>
         );

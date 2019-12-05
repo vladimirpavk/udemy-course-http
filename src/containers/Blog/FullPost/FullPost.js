@@ -7,7 +7,9 @@ class FullPost extends Component {
     
     constructor(props){
         super(props);
-        //console.log(props.match.params['id']);
+        console.log('Params id: ', props.match.params['id']);
+        console.log('Props', props);
+
         this.state = {
             post : {
                 title : '',
@@ -34,6 +36,10 @@ class FullPost extends Component {
         catch(error){
             console.log('Something bad happened...', error);
         }           
+    }
+
+    componentDidUpdate(){
+        console.log('Component updated...');
     }
 
     deleteClicked = async ()=>{
