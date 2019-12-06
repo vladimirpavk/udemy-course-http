@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import React, { Component, Suspense } from 'react';
+import { Route, NavLink, Redirect, Switch } from 'react-router-dom';
 import './Blog.css';
 
 import axios from 'axios';
 
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
 import FullPost from './FullPost/FullPost';
+
+const NewPost = React.lazy(
+    ()=>import('./NewPost/NewPost')
+);
 
 class Blog extends Component {
     
@@ -20,7 +23,7 @@ class Blog extends Component {
         };
     }
 
-    componentWillMount(){
+    componentDidMount(){
         //console.log('Will get data...');
         this.getData();
     }    
@@ -117,7 +120,7 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <NavLink to='/' exact><li>Home</li></NavLink>                            
+                            <NavLink to='/'><li>Home</li></NavLink>                            
                             <NavLink to='/new'><li>New Post</li></NavLink>
                         </ul>
                     </nav>
@@ -140,8 +143,17 @@ class Blog extends Component {
                         addPostClicked={this.addPost}
                     />
                 </section> */}
-                <Route path='/' component={Posts} />                
-                <Route path='/new' component={NewPost} />               
+                <Switch>                    
+                    <Route path='/posts' component={Posts} />                                         
+                    <Route
+                        path='/new'
+                        render={()=>(
+                            <Suspense fallback={<h1>Loading...</h1>}>
+                                <NewPost />
+                            </Suspense>
+                        )} />
+                    <Redirect from='/' exact to='/posts' />
+                </Switch>
             </div>
         );
     }

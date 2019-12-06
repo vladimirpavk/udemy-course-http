@@ -74,7 +74,7 @@ class Posts extends Component{
                 <section className="Posts">
                     {posts}
                 </section>
-                <Route path='/post/:id' component={FullPost} />
+                <Route path='/posts/:id' component={FullPost} />
             </div>           
         )
     }
